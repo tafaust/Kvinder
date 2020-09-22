@@ -1,0 +1,72 @@
+#:import win kivy.core.window
+#:import Swiper app.widgets
+#:import Card app.widgets
+
+
+<MyMenu@FloatLayout>:
+    ActionBar:
+        pos_hint: {'top': 1}
+        size_hint_y: None
+        height: 50
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                title: 'Kvinder'
+                with_previous: False
+
+
+FloatLayout:
+    canvas:
+        Color:
+            rgb: (255, 255, 255)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    BoxLayout:
+        size: self.size
+        orientation: 'vertical'
+        spacing: 10
+
+        MyMenu:
+            size_hint_y: None
+            height: 50
+
+        Swiper:
+            size: self.size
+            Card:
+                size_hint: (.5, .7)
+                center_x: self.parent.width/6.5
+                pos_hint: {'center_y': 0.45}
+                #center: self.parent.center
+                #size: self.parent.size
+                auto_bring_to_front: False
+                do_rotation: False
+                do_translation: True
+                do_scale: False
+
+
+<Swiper>:
+    canvas:
+        Color:
+            rgb: (255, 255, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<Card>:
+    canvas:
+        Color:
+            rgb: (0, 0, 255)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self.center
+    canvas.after:
+        PopMatrix
+

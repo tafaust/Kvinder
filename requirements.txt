@@ -1,0 +1,3 @@
+kivy[base]
+kivy_examples
+ffplayer
