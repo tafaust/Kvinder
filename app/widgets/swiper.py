@@ -19,7 +19,7 @@ class Card(Scatter):
             return False
         touch.ud['direction'] = 0
         touch.ud['origCenter'] = self.center
-        super().on_touch_down(touch)
+        return super().on_touch_down(touch)
 
     def on_touch_move(self, touch):
         if not(self.collide_point(*touch.pos) and 'origCenter' in touch.ud):
@@ -41,11 +41,11 @@ class Card(Scatter):
                     pass  # do nothing
                 #self.angle = degrees(atan2(touch.y - touch.ud['origCenter'][1], touch.x - touch.ud['origCenter'][0]))
                 print('The touch angle is', self.angle)
-            Clock.schedule_once(updates_spin, 0.01)
+            Clock.schedule_once(updates_spin, 0)
         '''
 
         touch.ud['direction'] = (self.center_x - touch.ud['origCenter'][0])
-        super().on_touch_move(touch)
+        return super().on_touch_move(touch)
 
     def on_touch_up(self, touch):
         if not(self.collide_point(*touch.pos) and 'direction' in touch.ud):
@@ -62,7 +62,7 @@ class Card(Scatter):
             Clock.schedule_once(updates_spin, 0.01)
             print('Reseting position and angle')
 
-        super().on_touch_up(touch)
+        return super().on_touch_up(touch)
 
     def on_transform_with_touch(self, touch):
         '''
@@ -101,3 +101,4 @@ class Swiper(FloatLayout):
         '''
 
         return self
+
